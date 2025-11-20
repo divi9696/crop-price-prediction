@@ -16,33 +16,7 @@ Market Coverage: 10 major Indian markets with state-wise analysis
 
 Data Export: Download forecasts as CSV or JSON
 
-📁 Project Structure
-text
-crop-price-prediction/
-├── 📊 data/
-│   ├── schema.md                 # Data schema documentation
-│   └── generate_synthetic.py     # Synthetic data generator
-├── 🔬 notebooks/
-│   └── price_prediction_rice.ipynb    # EDA and model training
-├── 🧪 experiments/
-│   └── model_comparison.ipynb         # Model performance analysis
-├── 🚀 src/
-│   ├── __init__.py
-│   ├── data.py                   # Data loading and preprocessing
-│   ├── features.py               # Feature engineering
-│   ├── models.py                 # ML model implementations
-│   ├── eval.py                   # Model evaluation utilities
-│   ├── train.py                  # Training script
-│   └── predict_api.py            # FastAPI application
-├── 🤖 models/                    # Trained model files
-├── 🌐 app.py                     # Streamlit web application
-├── ⚙️ config.yml                 # Configuration settings
-├── 📋 requirements.txt           # Python dependencies
-└── 🐳 docker/
-    ├── Dockerfile
-    └── docker-compose.yml
-🛠️ Installation & Setup
-Prerequisites
+
 Python 3.9 or higher
 
 pip (Python package manager)
