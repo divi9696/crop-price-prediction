@@ -242,7 +242,7 @@ def prepare_features_for_training(X: pd.DataFrame, y: pd.Series) -> Tuple[pd.Dat
     for col in numeric_columns:
         # FIX: Use explicit boolean check instead of implicit
         null_mask = X_processed[col].isnull()
-        if null_mask.any():  # Explicit .any() call
+        if np.any(null_mask):  # Handle potential DataFrame from duplicate cols
             null_count = null_mask.sum()
             median_val = X_processed[col].median()
             X_processed[col] = X_processed[col].fillna(median_val)

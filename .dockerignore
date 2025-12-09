@@ -1,0 +1,7 @@
+crop_env/
+.git/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+.env

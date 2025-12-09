@@ -120,8 +120,11 @@ class LightGBMPredictor(PricePredictor):
             eval_set=eval_set,
             eval_names=eval_names,
             eval_metric='rmse',
-            early_stopping_rounds=50,
-            verbose=10
+
+            callbacks=[
+                lgb.early_stopping(stopping_rounds=50),
+                lgb.log_evaluation(10)
+            ]
         )
         
         self.training_date = datetime.now().isoformat()

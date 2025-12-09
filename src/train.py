@@ -46,6 +46,12 @@ def setup_logging():
         ]
     )
 
+def numpy_converter(o):
+    if isinstance(o, np.integer): return int(o)
+    if isinstance(o, np.floating): return float(o)
+    if isinstance(o, np.ndarray): return o.tolist()
+    raise TypeError(f"Object of type {o.__class__.__name__} is not JSON serializable")
+
 def main():
     """Main training script"""
     parser = argparse.ArgumentParser(description='Train crop price prediction models')
@@ -237,7 +243,7 @@ def main():
     
     summary_path = os.path.join(args.output, 'training_summary.json')
     with open(summary_path, 'w') as f:
-        json.dump(training_summary, f, indent=2)
+        json.dump(training_summary, f, indent=2, default=numpy_converter)
     
     logger.info(f"💾 Training summary saved to {summary_path}")
     logger.info("✅ Training completed successfully!")
