@@ -80,7 +80,7 @@ st.markdown("""
 
 class AdvancedCropForecastApp:
     def __init__(self):
-        self.API_URL = "http://localhost:8001/predict"
+        self.API_URL = "http://127.0.0.1:8001/predict"
         self.VALID_HORIZONS = [1, 2, 4, 12]  # API accepted values
         self.setup_data()
         
@@ -175,7 +175,9 @@ class AdvancedCropForecastApp:
             response = requests.post(self.API_URL, json=test_payload, timeout=5)
             # If we get any response other than 404, the endpoint exists
             return response.status_code != 404
-        except:
+        except Exception as e:
+            # Log the specific error to help with debugging (visible in Render logs)
+            print(f"API Check Failed: {e}")
             return False
     
     def call_prediction_api(self, market: str, state: str, crop: str, variety: str, horizon_weeks: int, as_of_date: str) -> Tuple[Dict[str, Any], bool]:
