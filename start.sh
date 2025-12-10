@@ -11,7 +11,7 @@ case "$APP_MODE" in
         echo "🔌 Starting API server..."
         exec uvicorn src.predict_api:app \
             --host 0.0.0.0 \
-            --port 8001 \
+            --port ${PORT:-8001} \
             --workers 1 \
             --log-level info
         ;;
@@ -19,7 +19,7 @@ case "$APP_MODE" in
     "streamlit")
         echo "🌐 Starting Streamlit app..."
         exec streamlit run app.py \
-            --server.port 8501 \
+            --server.port ${PORT:-8501} \
             --server.address 0.0.0.0 \
             --server.headless true
         ;;
@@ -34,7 +34,7 @@ case "$APP_MODE" in
             --log-level info &
 
         streamlit run app.py \
-            --server.port 8501 \
+            --server.port ${PORT:-8501} \
             --server.address 0.0.0.0 \
             --server.headless true &
 
