@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Header, BackgroundTasks
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, validator
 from typing import List, Optional, Dict, Any
 import pandas as pd
@@ -133,12 +134,7 @@ async def startup_event():
 
 @app.get("/")
 async def root():
-    return {
-        "message": "Crop Price Prediction API", 
-        "version": "1.0.0",
-        "docs": "/docs",
-        "health": "/health"
-    }
+    return RedirectResponse(url="/docs")
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
